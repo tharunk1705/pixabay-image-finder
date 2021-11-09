@@ -1,4 +1,4 @@
-import { Toolbar, Container, makeStyles } from "@material-ui/core";
+import { Toolbar, Container, makeStyles, Link, Box} from "@material-ui/core";
 import { useState } from "react";
 import Navbar from "./components/navbar/Navbar";
 import Search from "./components/search/Search";
@@ -33,6 +33,13 @@ const App = () => {
           )}
         </Container>
       </Container>
+      <Box display="flex" alignItems="center" justifyContent="center" style={{
+        position : 'fixed',
+        bottom : '10px',
+        left : '47%'
+      }}>
+      <Link component="button" variant="body2" align="center" href="https://pixabay.com/" target="blank">API by Pixabay</Link>
+      </Box>
     </>
   );
 };
