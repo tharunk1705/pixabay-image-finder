@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Toolbar, Container, makeStyles } from "@material-ui/core";
+import { useState } from "react";
+import Navbar from "./components/navbar/Navbar";
+import Search from "./components/search/Search";
+import ImageResults from "./components/image-results/ImageResults";
+import Alert from "@material-ui/lab/Alert";
 
-function App() {
+const useStyles = makeStyles({
+  container: {
+    marginTop: "3rem",
+  },
+});
+
+const App = () => {
+  const classes = useStyles();
+  const [images, setImages] = useState([]);
+
+  const imageSetter = (imgArr) => {
+    setImages(imgArr);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Toolbar />
+      <Container className={classes.container}>
+        <Search imageSetter={imageSetter} />
+        <Container>
+          {images.length > 0 ? (
+            <ImageResults images={images} />
+          ) : (
+            <Alert severity="warning">No Images Found!</Alert>
+          )}
+        </Container>
+      </Container>
+    </>
   );
-}
-
+};
 export default App;
